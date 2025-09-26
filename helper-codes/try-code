@@ -1,0 +1,38 @@
+from unit_converter import UnitConverter
+
+def main():
+    conv = UnitConverter()
+
+    print("🔌 Electrical Engineering Unit Converter")
+    print("Type 'exit' anytime to quit.\n")
+
+    while True:
+        # ask for value
+        raw_value = input("Enter value: ")
+        if raw_value.lower() == "exit":
+            break
+
+        try:
+            value = float(raw_value)
+        except ValueError:
+            print("❌ Please enter a number.")
+            continue
+
+        # ask for units
+        from_unit = input("From unit: ").strip()
+        if from_unit.lower() == "exit":
+            break
+
+        to_unit = input("To unit: ").strip()
+        if to_unit.lower() == "exit":
+            break
+
+        # convert
+        try:
+            result = conv.convert(value, from_unit, to_unit)
+            print(f"✅ {value} {from_unit} = {result:.6g} {to_unit}\n")
+        except ValueError as e:
+            print("❌ Error:", e, "\n")
+
+if __name__ == "__main__":
+    main()
